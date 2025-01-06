@@ -1,13 +1,13 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
+-- Set highlight on search, but clear on pressing <Esc> in normal modevanteToggle
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Save and Close the current buffer
 vim.keymap.set("n", "<leader>s", ":w<CR>", { desc = "Save the current buffer" })
-vim.keymap.set("n", "<leader>w", ":q<CR>", { desc = "Close the current buffer" })
+vim.keymap.set("n", "<leader>w", ":q!<CR>", { desc = "Close the current buffer" })
 
 -- Navigat to previous and next buffer
 vim.keymap.set("n", "<C-PageDown>", ":bnext<CR>", { desc = "Go to next buffer" })
@@ -43,7 +43,18 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- File Explore
-vim.keymap.set("n", "<F4>", ":Lexplore<CR>", { desc = "Open file explorer" })
+vim.keymap.set({ "n", "i" }, "<F3>", ":NvimTreeToggle<CR>", { desc = "Open file explorer" })
+
+-- Avante
+-- Hide/Show Avante Sidebar
+vim.keymap.set({ "n", "i" }, "<F4>", "<Esc>:AvanteToggle<CR>", { desc = "Toggle Avante Sidebar" })
+
+vim.keymap.set("i", "<S-C-y>", 'copilot#Accept("\\<CR>")', {
+	expr = true,
+	replace_keycodes = false,
+	desc = "Accept copilot suggestion",
+})
+vim.g.copilot_no_tab_map = true
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

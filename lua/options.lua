@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.termguicolors = true
 vim.g.have_nerd_font = false
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -55,3 +58,4 @@ vim.filetype.add({
 })
 
 vim.cmd("let g:netrw_liststyle = 3")
+vim.opt.laststatus = 3
