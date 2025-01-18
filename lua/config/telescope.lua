@@ -22,13 +22,29 @@
 require("telescope").setup({
 	-- You can put your default mappings / updates / etc. in here
 	--  All the info you're looking for is in `:help telescope.setup()`
-	--
-	-- defaults = {
-	--   mappings = {
-	--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-	--   },
+	defaults = {
+		file_ignore_patterns = {
+			"node_modules",
+			".git/",
+		},
+		-- vimgrep_arguments = {
+		-- 	"rg",
+		-- 	"--color=never",
+		-- 	"--no-heading",
+		-- 	"--with-filename",
+		-- 	"--line-number",
+		-- 	"--column",
+		-- 	"--smart-case",
+		-- 	"--hidden", -- Include hidden files
+		-- },
+	},
+	-- pickers = {
+	-- 	find_files = {
+	-- 		hidden = true, -- Include hidden files
+	-- 		follow = true, -- Follow symlinks
+	-- 		no_ignore = false, -- Don't show files ignored by git
+	-- 	},
 	-- },
-	-- pickers = {}
 	extensions = {
 		["ui-select"] = {
 			require("telescope.themes").get_dropdown(),

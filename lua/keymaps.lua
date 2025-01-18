@@ -7,11 +7,21 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Save and Close the current buffer
 vim.keymap.set("n", "<leader>s", ":w<CR>", { desc = "Save the current buffer" })
-vim.keymap.set("n", "<leader>w", ":q!<CR>", { desc = "Close the current buffer" })
+vim.keymap.set("n", "<leader>w", ":q<CR>", { desc = "Close the current buffer" })
+vim.keymap.set("n", "<leader>W", ":q!<CR>", { desc = "Force close the current buffer" })
 
 -- Navigat to previous and next buffer
-vim.keymap.set("n", "<C-PageDown>", ":bnext<CR>", { desc = "Go to next buffer" })
-vim.keymap.set("n", "<C-PageUp>", ":bprevious<CR>", { desc = "Go to previous buffer" })
+vim.keymap.set("n", "<leader>b", ":buffers<CR>", { desc = "Go to next buffer" })
+-- vim.keymap.set("n", "<leader>n", ":bnext<CR>", { desc = "Go to next buffer" })
+-- vim.keymap.set("n", "<leader>p", ":bprevious<CR>", { desc = "Go to previous buffer" })
+vim.keymap.set("n", "<leader>n", "<C-i>", {
+	desc = "Go to next buffer in jump list",
+	noremap = true,
+})
+vim.keymap.set("n", "<leader>p", "<C-o>", {
+	desc = "Go to previous buffer in jump list",
+	noremap = true,
+})
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
@@ -42,12 +52,20 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+-- Neorg
+vim.keymap.set({ "n", "i", "v" }, "<leader>jy", ":Neorg journal yesterday<CR>", { desc = "Journal for yesterday" })
+vim.keymap.set({ "n", "i", "v" }, "<leader>jt", ":Neorg journal today<CR>", { desc = "Journal for today" })
+vim.keymap.set({ "n", "i", "v" }, "<leader>jm", ":Neorg journal today<CR>", { desc = "Journal for tomorrow" })
+
 -- File Explore
-vim.keymap.set({ "n", "i" }, "<F3>", ":NvimTreeToggle<CR>", { desc = "Open file explorer" })
+vim.keymap.set({ "n", "i" }, "<F3>", ":Neotree toggle<CR>", { desc = "Open file explorer" })
 
 -- Avante
 -- Hide/Show Avante Sidebar
-vim.keymap.set({ "n", "i" }, "<F4>", "<Esc>:AvanteToggle<CR>", { desc = "Toggle Avante Sidebar" })
+vim.keymap.set({ "n", "i" }, "<F8>", "<Esc>:AvanteToggle<CR>", { desc = "Toggle Avante Sidebar" })
+
+-- Git
+vim.keymap.set("n", "<F4>", ":Neogit kind=floating<CR>", { desc = "Open Neogit" })
 
 vim.keymap.set("i", "<S-C-y>", 'copilot#Accept("\\<CR>")', {
 	expr = true,
@@ -55,6 +73,9 @@ vim.keymap.set("i", "<S-C-y>", 'copilot#Accept("\\<CR>")', {
 	desc = "Accept copilot suggestion",
 })
 vim.g.copilot_no_tab_map = true
+
+vim.keymap.set({ "v", "n", "i" }, "<C-c>", '"+y', { desc = "Copy to clipboard" })
+vim.keymap.set({ "v", "n", "i" }, "<C-x>", '"+p', { desc = "Paste from clipboard" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
