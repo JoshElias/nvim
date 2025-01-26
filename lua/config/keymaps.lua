@@ -6,12 +6,12 @@ vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Save and Close the current buffer
-vim.keymap.set("n", "<leader>s", ":w<CR>", { desc = "Save the current buffer" })
-vim.keymap.set("n", "<leader>w", ":q<CR>", { desc = "Close the current buffer" })
-vim.keymap.set("n", "<leader>W", ":q!<CR>", { desc = "Force close the current buffer" })
+vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save the current buffer" })
+vim.keymap.set("n", "<C-w>", ":q<CR>", { desc = "Close the current buffer" })
+vim.keymap.set("n", "<C-W>", ":q!<CR>", { desc = "Force close the current buffer" })
 
 -- Navigat to previous and next buffer
-vim.keymap.set("n", "<leader>b", ":buffers<CR>", { desc = "Go to next buffer" })
+-- vim.keymap.set("n", "<leader>b", ":buffers<CR>", { desc = "Go to next buffer" })
 -- vim.keymap.set("n", "<leader>n", ":bnext<CR>", { desc = "Go to next buffer" })
 -- vim.keymap.set("n", "<leader>p", ":bprevious<CR>", { desc = "Go to previous buffer" })
 vim.keymap.set("n", "<leader>n", "<C-i>", {
@@ -57,15 +57,23 @@ vim.keymap.set({ "n", "i", "v" }, "<leader>jy", ":Neorg journal yesterday<CR>", 
 vim.keymap.set({ "n", "i", "v" }, "<leader>jt", ":Neorg journal today<CR>", { desc = "Journal for today" })
 vim.keymap.set({ "n", "i", "v" }, "<leader>jm", ":Neorg journal today<CR>", { desc = "Journal for tomorrow" })
 
+-- Code
+local conform = require("conform")
+vim.keymap.set("", "<leader>bf", function()
+	conform.format({ async = true })
+end, { desc = "Format buffer" })
+
 -- File Explore
-vim.keymap.set({ "n", "i" }, "<F3>", ":Neotree toggle<CR>", { desc = "Open file explorer" })
+vim.keymap.set("", "<F3>", function()
+	require("oil").toggle_float()
+end, { desc = "Open file explorer" })
 
 -- Avante
 -- Hide/Show Avante Sidebar
 vim.keymap.set({ "n", "i" }, "<F8>", "<Esc>:AvanteToggle<CR>", { desc = "Toggle Avante Sidebar" })
 
 -- Git
-vim.keymap.set("n", "<F4>", ":Neogit kind=floating<CR>", { desc = "Open Neogit" })
+vim.keymap.set("n", "<F4>", "<cmd>LazyGit<cr>", { desc = "Open Neogit" })
 
 vim.keymap.set("i", "<S-C-y>", 'copilot#Accept("\\<CR>")', {
 	expr = true,

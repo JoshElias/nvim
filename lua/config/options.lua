@@ -4,6 +4,8 @@ vim.g.termguicolors = true
 vim.g.have_nerd_font = false
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.number = true
 -- vim.opt.relativenumber = true
 vim.opt.mouse = "a"
@@ -31,7 +33,8 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
