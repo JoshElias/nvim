@@ -36,9 +36,9 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 -- Journalling
 wk.add({ { "<leader>j", group = "[J]ournal" } })
-vim.keymap.set("", "<leader>jy", ":Neorg journal yesterday<CR>", { desc = "Journal for yesterday" })
-vim.keymap.set("", "<leader>jt", ":Neorg journal today<CR>", { desc = "Journal for today" })
-vim.keymap.set("", "<leader>jm", ":Neorg journal today<CR>", { desc = "Journal for tomorrow" })
+vim.keymap.set("n", "<leader>jy", ":Neorg journal yesterday<CR>", { desc = "Journal for yesterday" })
+vim.keymap.set("n", "<leader>jt", ":Neorg journal today<CR>", { desc = "Journal for today" })
+vim.keymap.set("n", "<leader>jm", ":Neorg journal today<CR>", { desc = "Journal for tomorrow" })
 
 -- Navigat to previous and next buffer
 -- vim.keymap.set("n", "<leader>b", ":buffers<CR>", { desc = "Go to next buffer" })
@@ -74,7 +74,7 @@ end, { desc = "Open file explorer" })
 
 -- Avante
 -- Hide/Show Avante Sidebar
-wk.add({ { "<leader>a", group = "[A]vante" } })
+wk.add({ mode = { "n", "v" }, { "<leader>a", group = "[A]vante" } })
 vim.keymap.set({ "n", "i" }, "<F8>", "<Esc>:AvanteToggle<CR>", { desc = "Toggle Avante Sidebar" })
 
 -- Git
@@ -82,7 +82,7 @@ vim.keymap.set("n", "<F4>", "<cmd>LazyGit<cr>", { desc = "Open Neogit" })
 
 -- Buffer
 local conform = require("conform")
-wk.add({ { "<leader>b", group = "[B]uffer" } })
+wk.add({ mode = { "n", "v" }, { "<leader>b", group = "[B]uffer" } })
 vim.keymap.set("", "<leader>bf", function()
 	conform.format({ async = true })
 end, { desc = "Format buffer" })
@@ -178,3 +178,19 @@ vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "[R]ename" })
 -- or a suggestion from your LSP for this to activate.
 vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code [A]ction" })
 vim.keymap.set("n", "<leader>lq", "<cmd>LspRestart<CR>", { desc = "[L]SP Restart" })
+
+-- Git Portal
+-- Opens the current file in your browser at the correct branch/commit.
+-- When in visual mode, selected lines are included in the permalink.
+local gitportal = require("gitportal")
+wk.add({ mode = { "n", "v" }, { "<leader>r", group = "Git [R]emote Portal" } })
+vim.keymap.set({ "n", "v" }, "<leader>rp", gitportal.open_file_in_browser, { desc = "Open file in [P]ortal" })
+-- Opens a Githost link directly in Neovim, optionally switching to the branch/commit.
+vim.keymap.set("n", "<leader>ri", gitportal.open_file_in_neovim, { desc = "Open file in [I]nternal Git" })
+
+-- Generates and copies the permalink of your current file to your clipboard.
+-- When in visual mode, selected lines are included in the permalink.
+vim.keymap.set({ "n", "v" }, "<leader>rc", gitportal.copy_link_to_clipboard, { desc = "[C]opy Current file link" })
+
+-- Git Signs
+wk.add({ mode = { "n", "v" }, { "<leader>h", group = "Git [Hunk]" } })

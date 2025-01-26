@@ -24,6 +24,20 @@ return {
 							default_workspace = "work",
 						},
 					},
+					["core.keybinds"] = {
+						config = {
+							hook = {
+								-- Disable specific keybinds
+								["norg"] = {
+									-- Example: disable specific keybind
+									["n"] = {
+										-- Disable the keybind for creating a new note
+										["<leader>nn"] = false,
+									},
+								},
+							},
+						},
+					},
 				},
 			})
 			vim.wo.foldlevel = 99

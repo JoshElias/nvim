@@ -15,6 +15,12 @@ return {
 		},
 	},
 	{
+		"trevorhauter/gitportal.nvim",
+		opts = {
+			always_include_current_line = true,
+		},
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
 			on_attach = function(bufnr)
