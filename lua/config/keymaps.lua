@@ -13,14 +13,14 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+-- vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Save and Close the current buffer
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save the current buffer" })
-vim.keymap.set("n", "<leader>q", ":bd<CR>", { desc = "Close the current buffer" })
-vim.keymap.set("n", "<leader>Q", ":bd!<CR>", { desc = "Force close the current buffer" })
-vim.keymap.set("n", "<leader>c", ":q<CR>", { desc = "Close the current window" })
-vim.keymap.set("n", "<leader>C", ":q!<CR>", { desc = "Force close the current window" })
+vim.keymap.set("n", "<leader>c", ":bd<CR>", { desc = "Close the current buffer" })
+vim.keymap.set("n", "<leader>C", ":bd!<CR>", { desc = "Force close the current buffer" })
+vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Close the current window" })
+vim.keymap.set("n", "<leader>Q", ":q!<CR>", { desc = "Force close the current window" })
 
 -- Copy and Paste
 vim.keymap.set("", "<C-c>", '"+y', { desc = "Copy to clipboard" })
@@ -45,7 +45,6 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 -- Journalling
 wk.add({ { "<leader>j", group = "[J]ournal" } })
-wk.add({ { "<leader>t", group = "Neorg" } })
 vim.keymap.set("n", "<leader>jy", ":Neorg journal yesterday<CR>", { desc = "Journal for yesterday" })
 vim.keymap.set("n", "<leader>jt", ":Neorg journal today<CR>", { desc = "Journal for today" })
 vim.keymap.set("n", "<leader>jm", ":Neorg journal today<CR>", { desc = "Journal for tomorrow" })
@@ -54,11 +53,11 @@ vim.keymap.set("n", "<leader>jm", ":Neorg journal today<CR>", { desc = "Journal 
 -- vim.keymap.set("n", "<leader>b", ":buffers<CR>", { desc = "Go to next buffer" })
 -- vim.keymap.set("n", "<leader>n", ":bnext<CR>", { desc = "Go to next buffer" })
 -- vim.keymap.set("n", "<leader>p", ":bprevious<CR>", { desc = "Go to previous buffer" })
-vim.keymap.set("n", "<leader>]", "<C-i>", {
+vim.keymap.set("n", "<leader><PageDown>", "<C-i>", {
 	desc = "Go to next buffer in jump list",
 	noremap = true,
 })
-vim.keymap.set("n", "<leader>[", "<C-o>", {
+vim.keymap.set("n", "<leader><PageUp>", "<C-o>", {
 	desc = "Go to previous buffer in jump list",
 	noremap = true,
 })
@@ -83,13 +82,17 @@ vim.keymap.set("", "<F3>", function()
 	require("oil").toggle_float()
 end, { desc = "Open file explorer" })
 
--- Avante
--- Hide/Show Avante Sidebar
-wk.add({ mode = { "n", "v" }, { "<leader>a", group = "[A]vante" } })
-vim.keymap.set({ "n", "i" }, "<F8>", "<Esc>:AvanteToggle<CR>", { desc = "Toggle Avante Sidebar" })
+-- AI Commands
+wk.add({ mode = { "n", "v" }, { "<leader>a", group = "Ask AI" } })
+-- vim.keymap.set({'n', 'v'}, "<leader>ac", "<cmd>CodeCompanion<cr>", { desc = "CodeCompanion Chat" })
+vim.keymap.set("", "<F6>", "<cmd>CodeCompanionActions<cr>", { desc = "CodeCompanion Actions" })
+vim.keymap.set("", "<F8>", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle CodeCompanion Sidebar" })
+-- vim.keymap.set({ "n", "i", "v" }, "<F8>", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle CodeCompanion Sidebar" })
+-- vim.keymap.set("n", "<leader>ad", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle CodeCompanion Sidebar" })
 
 -- Git
 vim.keymap.set("n", "<F4>", "<cmd>LazyGit<cr>", { desc = "Open Neogit" })
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>:q<cr>", { desc = "Close terminal" })
 
 -- Buffer
 wk.add({ mode = { "n", "v" }, { "<leader>b", group = "[B]uffer" } })
@@ -101,6 +104,16 @@ vim.keymap.set({ "n", "v" }, "<leader>bf", function()
 		} or nil,
 	})
 end, { desc = "Format buffer" })
+vim.keymap.set(
+	{'n', 'v'},
+	"<leader>bj",
+	":'<,'>!jq .<CR>",
+	{
+		desc = "Pick a buffer",
+		remap = true,
+		silent = false,
+	}
+)
 
 -- Autocomplete
 
@@ -201,3 +214,4 @@ vim.keymap.set({ "n", "v" }, "<leader>rc", gitportal.copy_link_to_clipboard, { d
 
 -- Git Signs
 wk.add({ mode = { "n", "v" }, { "<leader>h", group = "Git [Hunk]" } })
+

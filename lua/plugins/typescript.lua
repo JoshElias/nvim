@@ -1,7 +1,24 @@
 return {
-	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
-	},
+	-- {
+	-- 	"pmizio/typescript-tools.nvim",
+	-- 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	-- 	opts = {},
+	-- 	config = function()
+	-- 		require("typescript-tools").setup({
+	-- 			settings = {
+	-- 				tsserver_plugins = {
+	-- 					'@vue/typescript-plugin',
+	-- 					"@styled/typescript-styled-plugin",
+	-- 					"@vue/language-server",
+	-- 				},
+	-- 				typescript = {
+	-- 					filetype_to_languageid = {
+	-- 						vue = "vue",
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 			filetypes = { "typescript", "typescriptreact", "javascript", "typescript.tsx", "vue" },
+	-- 		})
+	-- 	end,
+	-- },
 }

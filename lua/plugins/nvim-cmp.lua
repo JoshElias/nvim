@@ -88,6 +88,7 @@ return {
 					{ name = "luasnip" },
 					{ name = "path" },
 					{ name = "neorg" },
+					{ name = "minuet" },
 				},
 			})
 		end,

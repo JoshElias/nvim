@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.filetype.add({
-	extension = { rasi = "rasi" },
+	extension = { rasi = "rasi", vue = "vue" },
 	pattern = {
 		[".*/waybar/config"] = "jsonc",
 		[".*/mako/config"] = "dosini",

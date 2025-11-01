@@ -26,16 +26,8 @@ return {
 					},
 					["core.keybinds"] = {
 						config = {
-							hook = {
-								-- Disable specific keybinds
-								["norg"] = {
-									-- Example: disable specific keybind
-									["n"] = {
-										-- Disable the keybind for creating a new note
-										["<leader>nn"] = false,
-									},
-								},
-							},
+							-- default_keybinds = false,
+							-- neorg_leader = false,
 						},
 					},
 				},
