@@ -13,6 +13,13 @@ return {
     keymaps = {
       ["q"] = "actions.close",
       ["<Esc>"] = "actions.close",
+      ["<C-s>"] = {
+        function()
+          require("oil").save()
+        end,
+        mode = "n",
+        desc = "Save oil changes",
+      },
     },
   },
 }
