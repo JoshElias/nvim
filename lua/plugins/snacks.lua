@@ -2,15 +2,22 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      explorer = { enabled = false },
       picker = {
         sources = {
-          explorer = {
+          -- Show everything by default and explicitly hide any noise
+          -- I do this because I often want to search for local dotfiles
+          files = {
             hidden = true,
             ignored = true,
-          },
-          files = {
-            hidden = true, -- show dotfiles in fuzzy finder
-            ignored = false, -- optional: show gitignored files
+            exclude = {
+              "node_modules",
+              "dist",
+              ".git",
+              "build",
+              "coverage",
+              ".cache",
+            },
           },
         },
       },
