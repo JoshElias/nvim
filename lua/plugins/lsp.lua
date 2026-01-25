@@ -5,9 +5,6 @@ return {
       denols = {
         enabled = true,
       },
-      -- gopls = {
-      --   enabled = true,
-      -- },
     },
   },
 }
