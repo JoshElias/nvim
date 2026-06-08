@@ -5,6 +5,8 @@ return {
       denols = {
         enabled = true,
       },
+      -- vtsls = { enabled = false },
+      -- tsgo = {},
     },
   },
 }
